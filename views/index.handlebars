@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form>
+		<input>
+		<button type='submit' class='Submit'>Submit</button>
+	</form>
+
+	<br><br>
+
+	<div class='topDiv'> topDiv </div>
+
+	<button class='moveButton'>Move Down</button>
+	<div class='bottomDiv'> bottomDiv</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+
+	$("button").on('click',function(){
+		$.post('http://localhost:3000/showBurger',
+			{userInput:$("input").val()}
+		)
+	})
+
+	</script>
+</body>
+</html>

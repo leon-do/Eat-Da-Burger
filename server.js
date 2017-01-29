@@ -1,17 +1,10 @@
 var express = require('express')
 var exphbs  = require('express-handlebars');
-
+var bodyParser = require('body-parser')
+var connection = require('./config/connection.js')
 var app = express()
 app.listen(3000)
 
-var bodyParser = require('body-parser')
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'burgers_db'
-});
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 
@@ -38,7 +31,7 @@ app.post('/moveBurger', function (req, res) {
  
 
 function displayHTML(res){
-  connection.query('SELECT * FROM burgers', function (error, results, fields) {
+  connection.sqlData.query('SELECT * FROM burgers', function (error, results, fields) {
 
     var uneaten = [];
     var eaten = []
@@ -58,13 +51,13 @@ function displayHTML(res){
 
 
 function add2sql(userInput){
-	connection.query('INSERT INTO burgers (burger_name, devoured, date) VALUES (?, 0, NOW())', userInput , function (error, results, fields) {
+	connection.sqlData.query('INSERT INTO burgers (burger_name, devoured, date) VALUES (?, 0, NOW())', userInput , function (error, results, fields) {
   });
 }
 
 
 function update2sql(userInput){
-  connection.query('UPDATE burgers SET devoured=1 WHERE id=?', userInput, function(error, results){
+  connection.sqlData.query('UPDATE burgers SET devoured=1 WHERE id=?', userInput, function(error, results){
     console.log("somehow refresh the page to display the updates")
   })
 }

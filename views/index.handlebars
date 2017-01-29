@@ -11,9 +11,14 @@
 
 	<br><br>
 
-	<div class='topDiv'> topDiv </div>
 
-	<button class='moveButton'>Move Down</button>
+	{{#each myKey}}
+		<button class='topDiv' > {{this.burger_name}} </button>
+		<br>
+	{{/each}}
+
+	<hr>
+
 	<div class='bottomDiv'> bottomDiv</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

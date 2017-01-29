@@ -6,22 +6,21 @@
 <body>
 	<form>
 		<input>
-		<button type='submit' class='addButton'>Submit</button>
+		<button type='submit' class='addButton'>Add</button>
 	</form>
 
 	<br><br>
 
 
-	{{#each unEaten}}
-		<button type='submit' class='burgerButton' id={{this.id}}> {{this}} </button>
+	{{#each myKey1}}
+		<button type='submit' class='burgerButton' id={{this.id}}> {{this.burger_name}} </button>
 	{{/each}}
 
 	<hr>
 
-	{{#each eaten}}
-		<button type='submit' class='burgerButton' id={{this.id}}> {{this}} </button>
+	{{#each myKey2}}
+		<button type='submit' class='burgerButton' id={{this.id}}> {{this.burger_name}} </button>
 	{{/each}}
-
 
 
 

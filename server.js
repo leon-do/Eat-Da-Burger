@@ -21,19 +21,19 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', function(req,res){
   connection.query('SELECT * FROM burgers', function (error, results, fields) {
-    
-    var devouredZero = [];
-    var devouredOne = [];
+
+    var uneaten = [];
+    var eaten = []
 
     for (var i = 0; i < results.length; i++){
       if (results[i].devoured == 0){
-        devouredZero.push(results[i].burger_name)
+        uneaten.push(results[i])
       } else {
-        devouredOne.push(results[i].burger_name)
+        eaten.push(results[i])
       }
     }
 
-    res.render("index", {unEaten:devouredZero, eaten:devouredOne});
+    res.render("index", {myKey1:uneaten, myKey2:eaten});
 
   });
 })

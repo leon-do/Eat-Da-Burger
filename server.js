@@ -20,6 +20,19 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', function(req,res){
+  displayHTML(res)
+})
+
+app.post('/showBurger', function (req, res) {
+  add2sql(req.body.userInput)
+})
+
+app.post('/moveBurger', function (req, res) {
+  update2sql(req.body.userInput, res)
+})
+ 
+
+function displayHTML(res){
   connection.query('SELECT * FROM burgers', function (error, results, fields) {
 
     var uneaten = [];
@@ -36,22 +49,15 @@ app.get('/', function(req,res){
     res.render("index", {myKey1:uneaten, myKey2:eaten});
 
   });
-})
-
-app.post('/showBurger', function (req, res) {
-  add2sql(req.body.userInput)
-})
-
-app.post('/moveBurger', function (req, res) {
-  update2sql(req.body.userInput, res)
-})
- 
+}
 
 function add2sql(userInput){
-	connection.query('INSERT INTO burgers (burger_name, devoured, date) VALUES (?, 0, NOW())', userInput , function (error, results, fields) {});
+	connection.query('INSERT INTO burgers (burger_name, devoured, date) VALUES (?, 0, NOW())', userInput , function (error, results, fields) {
+  });
 }
 
 
 function update2sql(userInput){
   connection.query('UPDATE burgers SET devoured=1 WHERE id=?', userInput, function(error, results){})
+  return;
 }

@@ -6,29 +6,41 @@
 <body>
 	<form>
 		<input>
-		<button type='submit' class='Submit'>Submit</button>
+		<button type='submit' class='addButton'>Submit</button>
 	</form>
 
 	<br><br>
 
 
-	{{#each myKey}}
-		<button class='topDiv' > {{this.burger_name}} </button>
-		<br>
+	{{#each unEaten}}
+		<button type='submit' class='burgerButton' id={{this.id}}> {{this}} </button>
 	{{/each}}
 
 	<hr>
 
-	<div class='bottomDiv'> bottomDiv</div>
+	{{#each eaten}}
+		<button type='submit' class='burgerButton' id={{this.id}}> {{this}} </button>
+	{{/each}}
+
+
+
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 	<script>
 
-	$("button").on('click',function(){
-		$.post('http://localhost:3000/showBurger',
-			{userInput:$("input").val()}
-		)
-	})
+		$(".addButton").on('click',function(){
+			var input = $("input").val()
+			$.post('http://localhost:3000/showBurger',{userInput:input})
+		})
+
+
+		$(".burgerButton").on('click',function(){
+			var id = this.id;
+			$.post('http://localhost:3000/moveBurger',
+				{userInput:id}
+			)
+		})
 
 	</script>
 </body>

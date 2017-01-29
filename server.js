@@ -15,20 +15,25 @@ var connection = mysql.createConnection({
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 
+
 app.set('view engine', 'handlebars');
 
+
 app.use(bodyParser.urlencoded({ extended: false }))
+
 
 app.get('/', function(req,res){
   displayHTML(res)
 })
 
+
 app.post('/showBurger', function (req, res) {
   add2sql(req.body.userInput)
 })
 
+
 app.post('/moveBurger', function (req, res) {
-  update2sql(req.body.userInput, res)
+  update2sql(req.body.userInput)
 })
  
 
@@ -51,6 +56,7 @@ function displayHTML(res){
   });
 }
 
+
 function add2sql(userInput){
 	connection.query('INSERT INTO burgers (burger_name, devoured, date) VALUES (?, 0, NOW())', userInput , function (error, results, fields) {
   });
@@ -58,6 +64,7 @@ function add2sql(userInput){
 
 
 function update2sql(userInput){
-  connection.query('UPDATE burgers SET devoured=1 WHERE id=?', userInput, function(error, results){})
-  return;
+  connection.query('UPDATE burgers SET devoured=1 WHERE id=?', userInput, function(error, results){
+    console.log("somehow refresh the page to display the updates")
+  })
 }

@@ -1,12 +1,25 @@
 {
   "name": "burger",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.13.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leon-do/Eat-Da-Burger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leon-do/Eat-Da-Burger/issues"
+  },
+  "homepage": "https://github.com/leon-do/Eat-Da-Burger#readme",
+  "description": ""
 }

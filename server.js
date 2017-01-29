@@ -43,7 +43,7 @@ app.post('/showBurger', function (req, res) {
 })
 
 app.post('/moveBurger', function (req, res) {
-  update2sql(req.body.userInput)
+  update2sql(req.body.userInput, res)
 })
  
 
@@ -55,4 +55,3 @@ function add2sql(userInput){
 function update2sql(userInput){
   connection.query('UPDATE burgers SET devoured=1 WHERE id=?', userInput, function(error, results){})
 }
-

@@ -18,9 +18,9 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', function(req,res){
-  connection.query('INSERT INTO burgers (burger_name, devoured, date) VALUES (?, 0, NOW())', userInput , function (error, results, fields) {
-    res.render("index");
-   });
+  connection.query('SELECT burger_name FROM burgers', function (error, results, fields) {
+        res.render("index", {burgers:fields});
+  });
 })
 
 app.post('/showBurger', function (req, res) {
